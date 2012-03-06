@@ -54,6 +54,7 @@ _Allowed permissions are:_
  * CakeS3::ACL\_PUBLIC\_READ\_WRITE
  * CakeS3::ACL\_AUTHENTICATED\_READ
 	
+
 Delete a file from S3
 
 	$response = $this->CakeS3->delete_object('path/relative/to/bucket/');
