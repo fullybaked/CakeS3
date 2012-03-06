@@ -152,7 +152,7 @@ class CakeS3Component extends Component {
 	 * @param string $file
 	 * @return string
 	 */
-	private function build_url_to_file($file) {
+	public function build_url_to_file($file) {
 		$url = ($this->use_ssl) ? 'https://' : 'http:';
 		$url .= $this->endpoint . '/';
 		$url .= $this->bucket . '/';
