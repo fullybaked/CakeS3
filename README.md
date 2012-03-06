@@ -1,5 +1,13 @@
 # CakeS3 Plugin for CakePHP 2.0
 
+The CakeS3 plugin for CakePHP allows easy integration with an Amazon S3 instance to be dropped into your app.  
+
+Utilising [tpyo's](https://github.com/tpyo/amazon-s3-php-class) amazon-s3-php-class, which in his words is..
+
+> This class is a standalone Amazon S3 REST implementation for PHP 5.2.x (using CURL), that supports large file uploads and doesn’t require PEAR.
+
+This means it can be dropped in and run on a variety of hosting platforms.
+
 ## Installation
 
 Do one of the following to use this plugin in your CakePHP 2.0 app
