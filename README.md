@@ -45,7 +45,7 @@ List the contents of a path relative to the bucket i.e. a folder
 	
 Upload a file to S3
 	
-	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', $permission);
+	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', [$permission = ACL_PUBLIC_READ]);
 	
 _Allowed permissions are:_
 
@@ -59,22 +59,38 @@ Delete a file from S3
 
 	$response = $this->CakeS3->delete_object('path/relative/to/bucket/');
 	
+Retrieve an object from S3 location
+
+	$object = $this->CakeS3->get_object('path/relative/to/bucket/', [$path_to_store_local_copy = false]);
+	
+Retrieven information about an object on S3
+
+	$info = $this->CakeS3->get_object_info('path/relative/to/bucket/');
+	
 Change the bucket name on the fly using method chaining	
 
 	$response = $this->CakeS3->bucket('new_bucket')->{any_of_the_above_methods};
-	
-	
 
 ## Features
 
 * List contents of given bucket
 * List folder contents within a bucket
 * Push files to a location on S3 
+* Retrieve an object from S3
+* Retrieve information about an object from S3
 * Delete files from S3
 
 ## Attribution
 
 The S3 php class used by this plugin was developed by [tpyo](https://github.com/tpyo/amazon-s3-php-class)
+
+## Changelog
+
+**Version 0.2 - 6th March 2012**
+
+* Added get_object method
+* Added get\_object\_info method
+* Made the build\_url\_to\_file method public
 
 ## License
 
