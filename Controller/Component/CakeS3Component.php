@@ -112,14 +112,25 @@ class CakeS3Component extends Component {
 	 */
 	public function put_object($file_path_to_upload, $location_on_s3, $permission = self::ACL_PUBLIC_READ) {		
 		try {
-			S3::putObject($file_path_to_upload, $this->bucket, $location_on_s3, $permission);
+			S3::putObject(S3::inputFile($file_path_to_upload), $this->bucket, $location_on_s3, $permission);
+			$info = $this->get_object_info($location_on_s3);
 			return array(
 				'name' => basename($location_on_s3),
 				'url' => $this->build_url_to_file($location_on_s3),
+				'size' => $info['size']
 			);
 		} catch (Exception $e) {
 			return false;
 		}		
+	}
+	
+	/**
+	 * get information about an object in the current S3 bucket
+	 * @param string $location_on_s3 - path the file should have on S3 relative to the current bucket
+	 * @return array 
+	 */
+	public function get_object_info($location_on_s3) {
+		return S3::getObjectInfo($this->bucket, $location_on_s3);
 	}
 	
 	/**
@@ -131,6 +142,20 @@ class CakeS3Component extends Component {
 		try {
 			S3::deleteObject($this->bucket, $location_on_s3);
 			return true;
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * retrieve an object from a location in the current S3 bucket
+	 * @param string $location_on_s3 - path to the object relative to the bucket
+	 * @return mixed - FALSE on failure, Object array on success
+	 */
+	public function get_object($location_on_s3, $path_to_local_file = false) {
+		try {
+			$object = S3::getObject($this->bucket, $location_on_s3, $path_to_local_file);
+			return $object;
 		} catch (Exception $e) {
 			return false;
 		}
