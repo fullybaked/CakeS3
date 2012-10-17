@@ -115,6 +115,11 @@ The S3 php class used by this plugin was developed by [tpyo](https://github.com/
 
 ## Changelog
 
+**Version 0.3 - 17th October 2012**
+
+* Added better access to permission types via wrapper method
+* Added support for accessing protected resources on S3 via authenticated URL's
+
 **Version 0.2 - 6th March 2012**
 
 * Added get_object method
