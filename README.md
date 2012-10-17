@@ -76,7 +76,6 @@ Example:
 	
 	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', $this->CakeS3->permission('authenticated_read'));
 
-
 Delete a file from S3
 
 	$response = $this->CakeS3->delete_object('path/relative/to/bucket/');
@@ -92,6 +91,14 @@ Retrieven information about an object on S3
 Change the bucket name on the fly using method chaining	
 
 	$response = $this->CakeS3->bucket('new_bucket')->{any_of_the_above_methods};
+
+Accessing Files With _Authenticated Read_ Permission
+	
+	$auth_path = $this->CakeS3->authenticated_url($full_s3_path, [$lifetime]);
+
+If a file is stored on S3 with `authenticated_read` permissions, it is only accessible via a secure token.  This method generates a new URL to 
+reach the resource with the correct token, and a time to live.  The default is 30 seconds as generally the URL will be recreated on refresh, but
+not accessible if copied out of the app
 
 ## Features
 
