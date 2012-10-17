@@ -219,6 +219,17 @@ class CakeS3Component extends Component {
 		return constant($permission);
 	}
 
+	/**
+	 * generate a url to authenticated content on S3
+	 * @param string $uri - Full URL to the S3 resource
+	 * @param integer $lifetime - number of seconds this url will be valid
+	 * @return string - Authenticated URL to access resource
+	 * @access public
+	 */
+	public function authenticated_url($uri, $lifetime = 60) {		
+		$url = S3::getAuthenticatedURL($this->bucket, $this->relative_path($uri), $lifetime, false, $this->use_ssl);
+		return $url;
+	}
 
 
 }
