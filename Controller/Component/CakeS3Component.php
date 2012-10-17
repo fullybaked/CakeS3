@@ -198,8 +198,8 @@ class CakeS3Component extends Component {
 	 * @access public
 	 */
 	public function permission($permission) {
-		$permission = strtoupper("ACL_$permission");
-		return self::{$permission};
+		$permission = strtoupper("self::ACL_$permission");
+		return constant($permission);
 	}
 
 }
