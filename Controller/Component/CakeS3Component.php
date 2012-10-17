@@ -188,18 +188,18 @@ class CakeS3Component extends Component {
 	/**
 	 * wrapper method for accessing the class constants without 
 	 * actually including the class directly with App::uses()
-	 * allowed access values are
+	 * allowed $permission values are
 	 * 	- private
 	 * 	- public_read
 	 * 	- public_read_write
 	 *  - authenticated_read
-	 * @param string $access (see above)
+	 * @param string $permission (see above)
 	 * @return string
 	 * @access public
 	 */
-	public function access($access) {
-		$access = strtoupper("ACL_$access");
-		return self::{$access};
+	public function permission($permission) {
+		$permission = strtoupper("ACL_$permission");
+		return self::{$permission};
 	}
 
 }
