@@ -15,7 +15,7 @@ class CakeS3Component extends Component {
 	const ACL_PUBLIC_READ = 'public-read';
 	const ACL_PUBLIC_READ_WRITE = 'public-read-write';
 	const ACL_AUTHENTICATED_READ = 'authenticated-read';
-		
+			
 	/**
 	 * Amazon S3 key 
 	 * @var string
@@ -184,5 +184,23 @@ class CakeS3Component extends Component {
 		$url .= $file;
 		return $url;
 	}
+
+	/**
+	 * wrapper method for accessing the class constants without 
+	 * actually including the class directly with App::uses()
+	 * allowed access values are
+	 * 	- private
+	 * 	- public_read
+	 * 	- public_read_write
+	 *  - authenticated_read
+	 * @param string $access (see above)
+	 * @return string
+	 * @access public
+	 */
+	public function access($access) {
+		$access = strtoupper("ACL_$access");
+		return self::{$access};
+	}
+
 }
 ?>
