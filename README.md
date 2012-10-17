@@ -53,15 +53,29 @@ List the contents of a path relative to the bucket i.e. a folder
 	
 Upload a file to S3
 	
-	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', [$permission = ACL_PUBLIC_READ]);
-	
-_Allowed permissions are:_
+	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', [$permission]);
 
- * CakeS3::ACL\_PRIVATE
- * CakeS3::ACL\_PUBLIC\_READ
- * CakeS3::ACL\_PUBLIC\_READ\_WRITE
- * CakeS3::ACL\_AUTHENTICATED\_READ
+The response value is an array with the following values
+
+	array(
+		'name' => [name of saved file],
+		'url' => [path to the resource on S3],
+		'size' => [size of the resource on S3]
+	)
+
+__Allowed $permission Values:__
+
+The allowed values for permissions are wrapped by the component and are accessed via a wrapper method
+
+	$this->CakeS3->permission('private');
+	$this->CakeS3->permission('public_read');
+	$this->CakeS3->permission('public_read_write');
+	$this->CakeS3->permission('authenticated_read');
+
+Example:
 	
+	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', $this->CakeS3->permission('authenticated_read'));
+
 
 Delete a file from S3
 
