@@ -186,6 +186,23 @@ class CakeS3Component extends Component {
 	}
 
 	/**
+	 * deconstruct a full S3 resource path to return 
+	 * the path to the file relative to the bucket
+	 * @param string $url
+	 * @return string 
+	 * @access public 
+	 */
+	public function relative_path($url) {
+		$remove = array(
+			($this->use_ssl) ? 'https://' : 'http://',
+			$this->endpoint . '/',
+			$this->bucket . '/'
+		);
+		$relative_path = str_replace($remove, '', $url);		
+		return $relative_path;
+	}
+
+	/**
 	 * wrapper method for accessing the class constants without 
 	 * actually including the class directly with App::uses()
 	 * allowed $permission values are
@@ -201,6 +218,8 @@ class CakeS3Component extends Component {
 		$permission = strtoupper("self::ACL_$permission");
 		return constant($permission);
 	}
+
+
 
 }
 ?>
