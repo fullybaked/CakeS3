@@ -1,4 +1,10 @@
-# CakeS3 Plugin for CakePHP 2.0
+# CakeS3 Plugin for CakePHP 1.3.x
+
+__Please Note: This is for CakePHP 1.3.x__
+
+> I recently had to add S3 functions to a legacy app, so "downgraded" my plugin to accomodate them, I've pushed the 
+new branch up to Github in case anyone finds themselves in similar situations, but I do not intended to maintain
+this branch unless any major bugs come up.
 
 The CakeS3 plugin for CakePHP allows easy integration with an Amazon S3 instance to be dropped into your app.  
 
@@ -10,7 +16,7 @@ This means it can be dropped in and run on a variety of hosting platforms.
 
 ## Installation
 
-Do one of the following to use this plugin in your CakePHP 2.0 app
+Do one of the following to use this plugin in your CakePHP 1.3 app
 
 	git clone https://fullybaked@github.com/fullybaked/CakeS3.git app/Plugin/CakeS3
 	
@@ -21,12 +27,6 @@ or
 or
 
 Just download the package and unzip it into your app/Plugin directory
-
-
-Then remember to add the following to your Config/bootstrap.php
-
-	//Add the CakeS3 plugin
-	CakePlugin::load('CakeS3');
 
 ## Setup
 
@@ -116,13 +116,14 @@ The S3 php class used by this plugin was developed by [tpyo](https://github.com/
 
 ## Changelog
 
-**Version 0.3 - 17th October 2012**
+**Version X - 22nd October 2012**
+* __Branched and converted to CakePHP 1.3.x compatibility__
 
+**Version 0.3 - 17th October 2012**
 * Added better access to permission types via wrapper method
 * Added support for accessing protected resources on S3 via authenticated URL's
 
 **Version 0.2 - 6th March 2012**
-
 * Added get_object method
 * Added get\_object\_info method
 * Made the build\_url\_to\_file method public
