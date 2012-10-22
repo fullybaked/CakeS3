@@ -28,6 +28,8 @@ or
 
 Just download the package and unzip it into your app/Plugin directory
 
+_Remember if you use Git to use the 1.3.x branch_
+
 ## Setup
 
 Add the following to your controller $components instance variable
