@@ -132,6 +132,8 @@ The S3 php class used by this plugin was developed by [tpyo](https://github.com/
 Contributions are welcome.  If you think you can improve this plugin, please fork the repo, add to it and send me a pull request.  
 All accepted enhancement authors will be listed below.
 
+[Ollie Lawson](ollielawson)
+
 ## License
 
 Released under the [MIT license](http://www.opensource.org/licenses/MIT).
