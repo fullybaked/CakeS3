@@ -35,8 +35,8 @@ Add the following to your controller $components instance variable
 	// in controller components var
 	$components = array(
 		'CakeS3.CakeS3' => array(
-			's3_key' => 'YOUR_AMAZON_S3_KEY',
-			's3_secret' => 'YOUR_AMAZON_S3_SECRET_KEY',
+			's3Key' => 'YOUR_AMAZON_S3_KEY',
+			's3Secret' => 'YOUR_AMAZON_S3_SECRET_KEY',
 			'bucket' => 'BUCKET_NAME'
 		)
 	);
@@ -45,15 +45,15 @@ Add the following to your controller $components instance variable
 
 ####List the contents of a bucket
 
-	$contents = $this->CakeS3->list_bucket_contents();
+	$contents = $this->CakeS3->listBucketContents();
 
 ####List the contents of a path relative to the bucket i.e. a folder
 
-	$contents = $this->CakeS3->list_folder_contents('path/relative/to/bucket/');
+	$contents = $this->CakeS3->listFolderContents('path/relative/to/bucket/');
 
 ####Upload a file to S3
 
-	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', [$permission]);
+	$response = $this->CakeS3->putObject('/path/to/local/file', 'path/relative/to/bucket/', [$permission]);
 
 The response value is an array with the following values
 
@@ -74,11 +74,11 @@ The allowed values for permissions are wrapped by the component and are accessed
 
 Example:
 
-	$response = $this->CakeS3->put_object('/path/to/local/file', 'path/relative/to/bucket/', $this->CakeS3->permission('authenticated_read'));
+	$response = $this->CakeS3->putObject('/path/to/local/file', 'path/relative/to/bucket/', $this->CakeS3->permission('authenticated_read'));
 
 ####Accessing Files With `authenticated_read` Permission
 
-	$auth_path = $this->CakeS3->authenticated_url($full_s3_path, [$lifetime]);
+	$auth_path = $this->CakeS3->authenticateUrl($full_s3_path, [$lifetime]);
 
 If a file is stored on S3 with `authenticated_read` permissions, it is only accessible via a secure token.  This method generates a new URL to
 reach the resource with the correct token, and a time to live.  The default is 30 seconds as generally the URL will be recreated on refresh, but
@@ -86,15 +86,15 @@ not accessible if copied out of the app
 
 ####Delete a file from S3
 
-	$response = $this->CakeS3->delete_object('path/relative/to/bucket/');
+	$response = $this->CakeS3->deleteObject('path/relative/to/bucket/');
 
 ####Retrieve an object from S3 location
 
-	$object = $this->CakeS3->get_object('path/relative/to/bucket/', [$path_to_store_local_copy = false]);
+	$object = $this->CakeS3->getObject('path/relative/to/bucket/', [$path_to_store_local_copy = false]);
 
 ####Retrieve information about an object on S3
 
-	$info = $this->CakeS3->get_object_info('path/relative/to/bucket/');
+	$info = $this->CakeS3->getObjectInfo('path/relative/to/bucket/');
 
 ####Change the bucket name on the fly using method chaining
 
@@ -116,9 +116,14 @@ The S3 php class used by this plugin was developed by [tpyo](https://github.com/
 
 ## Changelog
 
+**Version 0.5 - 7th May 2013 BACKWARDS INCOMPATIBLE CHANGES**
+
+* Brought the component code in line with PSR coding standards (which means all method names have changed to camelCase)
+
+
 **Version 0.4 - 14th November 2012**
 
-* put_object method modified to accept MIME type parameter
+* putObject method modified to accept MIME type parameter
 
 **Version 0.3 - 17th October 2012**
 
