@@ -133,6 +133,37 @@ class CakeS3Component extends Component
     }
 
     /**
+     * copy to s3 on the file on s3
+     * @param string $sourceLocationOnS3 - path of source file to be copied in the S3 server
+     * @param string $copyLocationOnS3 - path to copy
+     * @param string $source_bucket - if the bucket of the source is different from the current S3 bucket
+     * @param string $copy_bucket -  if the bucket of to copy is different from the current S3 bucket
+     * @param string $permission - the access permissions the file should have, defaults to Public Read Acess
+     * @param string $mimeType - set the mime type of the object in S3, defaults to autodetect
+     * @return mixed - returns an array with details of the uploaded file on S3 for success, FALSE on failure
+     */
+	public function copyObject($sourceLocationOnS3, $copyLocationOnS3, $sourceBucket = false, $copyBucket = false, $permission = self::ACL_PUBLIC_READ, $mimeType = array()) {
+
+		try {
+			if ($sourceBucket == false || $sourceBucket == null) {
+				$sourceBucket = $this->bucket;
+			}
+			if ($copyBucket == false || $copyBucket == null) {
+				$copyBucket = $this->bucket;
+			}
+			S3::copyObject($sourceBucket, $sourceLocationOnS3, $copyBucket, $copyLocationOnS3, $permission, array(), $mimeType);
+			$info = S3::getObjectInfo($copyBucket, $copyLocationOnS3);
+			return array(
+					'name' => basename($copyLocationOnS3),
+					'url' => $this->buildUrlToFile($copyLocationOnS3),
+					'size' => $info['size']
+			);
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
+    /**
      * get information about an object in the current S3 bucket
      * @param string $locationOnS3 - path the file should have on S3 relative to the current bucket
      * @return array
