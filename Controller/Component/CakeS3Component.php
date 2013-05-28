@@ -68,6 +68,7 @@ class CakeS3Component extends Component
             throw new Exception('S3 Keys not set up. Unable to connect');
         }
         S3::setAuth($this->s3Key, $this->s3Secret);
+        S3::setEndpoint($this->endpoint);
     }
 
     /**
