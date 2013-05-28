@@ -37,7 +37,8 @@ Add the following to your controller $components instance variable
 		'CakeS3.CakeS3' => array(
 			's3Key' => 'YOUR_AMAZON_S3_KEY',
 			's3Secret' => 'YOUR_AMAZON_S3_SECRET_KEY',
-			'bucket' => 'BUCKET_NAME'
+			'bucket' => 'BUCKET_NAME',
+			'endpoint' => 's3.amazonaws.com' // [optional] Only required if your endpoint is not s3.amazonaws.com
 		)
 	);
 
