@@ -88,7 +88,7 @@ class S3
 	* @param string $host Hostname
 	* @return void
 	*/
-	public function setEndpoint($host)
+	public static function setEndpoint($host)
 	{
 		self::$endpoint = $host;
 	}
