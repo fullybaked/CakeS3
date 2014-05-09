@@ -62,6 +62,10 @@ class CakeS3Component extends Component
             foreach ($settings as $var => $val) {
                 $this->$var = $val;
             }
+        } else if($config = Configure::read('CakeS3')) {
+            foreach ($config as $var => $val) {
+                $this->$var = $val;
+            }
         }
 
         if (empty($this->s3Key) || empty($this->s3Secret)) {
