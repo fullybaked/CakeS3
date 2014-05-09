@@ -49,6 +49,7 @@ Or add the settings before invoking the Plugin in Config/bootstrap.php
 			's3Key' => 'YOUR_AMAZON_S3_KEY',
 			's3Secret' => 'YOUR_AMAZON_S3_SECRET_KEY',
 			'bucket' => 'BUCKET_NAME',
+			'endpoint' => 's3.amazonaws.com' // [optional] Only required if your endpoint is not s3.amazonaws.com
 			)
 	);
 	CakePlugin::load('CakeS3');
