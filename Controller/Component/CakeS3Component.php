@@ -8,7 +8,7 @@ App::import('Lib', 'CakeS3.S3');
  *
  * @author Dave Baker
  * @copyright Dave Baker (Fully Baked) 2012
- * @see http://undesigned.org.za/2007/10/22/amazon-s3-phppublic - class for the S3 class included in the vendor dir
+ * @see https://github.com/fullybaked/CakeS3 - class for the S3 class included in the vendor dir
  */
 class CakeS3Component extends Component
 {
@@ -60,6 +60,10 @@ class CakeS3Component extends Component
         // setup the instance vars
         if (!empty($settings)) {
             foreach ($settings as $var => $val) {
+                $this->$var = $val;
+            }
+        } else if($config = Configure::read('CakeS3')) {
+            foreach ($config as $var => $val) {
                 $this->$var = $val;
             }
         }

@@ -42,6 +42,25 @@ Add the following to your controller $components instance variable
 		)
 	);
 
+Or add the settings before invoking the Plugin in Config/bootstrap.php
+
+	//Add the CakeS3 plugin
+	Configure::write('CakeS3', array(
+			's3Key' => 'YOUR_AMAZON_S3_KEY',
+			's3Secret' => 'YOUR_AMAZON_S3_SECRET_KEY',
+			'bucket' => 'BUCKET_NAME',
+			'endpoint' => 's3.amazonaws.com' // [optional] Only required if your endpoint is not s3.amazonaws.com
+			)
+	);
+	CakePlugin::load('CakeS3');
+
+And in your controller, only include the Component name
+
+	$components = array(
+		'CakeS3.CakeS3'
+	);
+
+
 ## Usage
 
 ####List the contents of a bucket
