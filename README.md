@@ -1,3 +1,11 @@
+# DEPRECATED
+
+As may be abundantly clear I am no longer maintaining this component. It will *not* be updated for CakePHP 3.  It was a learning tool that some few people found useful, but moving forward I'd rather put my time into supporting one of the other S3 libraries on Packagist. Not only framework agnostic but reducing the number of S3 library clones by one.
+
+I'll leave the repo up for posterity and anyone that is still relying on it.
+
+
+
 # CakeS3 Plugin for CakePHP 2.0
 
 The CakeS3 plugin for CakePHP allows easy integration with an Amazon S3 instance to be dropped into your app.
