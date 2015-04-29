@@ -271,9 +271,13 @@ class CakeS3Component extends Component
      * @param string $url
      * @return string
      * @access public
+     * @throws Exception
      */
     public function relativePath($url)
     {
+        if(!filter_var($url, FILTER_VALIDATE_URL)) {
+            throw new Exception("Badly formatted URL passed to relativePath");
+        }
         $remove = array(
             ($this->useSsl) ? 'https://' : 'http://',
             $this->endpoint . '/',
