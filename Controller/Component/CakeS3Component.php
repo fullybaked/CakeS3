@@ -135,6 +135,41 @@ class CakeS3Component extends Component
             return false;
         }
     }
+    
+    /**
+     * create a new "folder" (prefix) - wrapper for putObject function
+     * 
+     * @param string $destination - relative path to bucket - where the folder should be created, 
+     * 				   if the destination is the bucket itself, false should be provided 
+     * @param string $folderName - name of the folder, that should be created
+     * @param string $permission - the access permissions the file should have, defaults to Public Read Acess
+     * @return mixed - returns an array with details of the uploaded file on S3 for success, FALSE on failure
+     */
+    public function createFolder($destination = false, $folderName, $permission = self::ACL_PUBLIC_READ) {
+    	if (!$folderName) {
+    		throw new CakeException('Folder name is required');
+    	}
+    	
+    	if ($destination && $destination != '/') {
+    		$destination = trim($destination, "/").'/';
+    	} else {
+    		$destination = '';
+    	}
+
+	$locationOnS3 = $destination . trim($folderName, "/") . '/';
+		
+	// create temp file
+	$filePathToUpload = APP.'tmp/'.md5(microtime(true) . $locationOnS3);
+	$f = fopen($filePathToUpload, 'a+');
+	fclose($f);
+
+	$result = $this->putObject($filePathToUpload, $locationOnS3, $permission);
+
+	// delete tmp file
+	@unlink($filePathToUpload);
+		
+	return $result;
+    }
 
     /**
      * copy to s3 on the file on s3
