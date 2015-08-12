@@ -151,12 +151,12 @@ class CakeS3Component extends Component
     	}
     	
     	if ($destination && $destination != '/') {
-    		$destination = trim($destination).'/';
+    		$destination = trim($destination, "/").'/';
     	} else {
     		$destination = '';
     	}
 
-	$locationOnS3 = $destination . trim($folderName) . '/';
+	$locationOnS3 = $destination . trim($folderName, "/") . '/';
 		
 	// create temp file
 	$filePathToUpload = APP.'tmp/'.md5(microtime(true) . $locationOnS3);
